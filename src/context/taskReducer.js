@@ -28,7 +28,7 @@ export const taskReducer = (state, action) => {
                 ...state,
                 tasks: state.tasks.filter(task => task.id !== action.payload.id)
             };
-        case types.isLaodingTask:
+        case types.isLoadingTask:
             return {
                 ...state,
                 isLoading: true,
@@ -51,7 +51,7 @@ export const taskReducer = (state, action) => {
         case types.saveActualFilters:
             return {
                 ...state,
-                applyFilters: action.payload || {types: [], states: []}
+                applyFilters: action.payload || {types: [], state: []}
             }
         default:
             return state;

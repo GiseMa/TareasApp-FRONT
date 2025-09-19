@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import taskApi from "../api/taskApi";
 import { authReducer } from "./authReducer";
+import { taskReducer } from "./taskReducer";
+
 import { types } from "./types";
 import { useNavigate } from 'react-router-dom';
 
@@ -23,6 +25,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
 
     const [authState, dispatch] = useReducer(authReducer, {}, init);
+    const [taskState, taskDispatch] = useReducer(taskReducer);
     const navigate = useNavigate();
 
     const checkToken = async () => {
@@ -94,9 +97,17 @@ export const AuthProvider = ({children}) => {
     const logout = async () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        dispatch({type: types.resetTasks});
+        taskDispatch({type: types.resetTasks});
         dispatch({type: types.logout})
     };
+
+    const onLogout = async () => {
+        await logout();
+        navigate('/auth/login', {
+            replace: true,
+        });
+    };
+
 
     const register = async ({name, email, password}) => {
         try {
@@ -130,7 +141,7 @@ export const AuthProvider = ({children}) => {
 
 
     return (
-        <AuthContext.Provider value={{...authState, register, login, logout, setError, clearError, clearRegister}}>
+        <AuthContext.Provider value={{...authState, register, login, logout,onLogout, setError, clearError, clearRegister}}>
             {children}
         </AuthContext.Provider>
     );

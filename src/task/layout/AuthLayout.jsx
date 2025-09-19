@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import wallpaperLogin from '../../assets/wallpaperLogin6.png'
+import wallpaperLogin from '../../assets/wallpaperLogin8.png'
 
 export const AuthLayout = ({children, title = ''}) => {
 
@@ -11,11 +11,12 @@ export const AuthLayout = ({children, title = ''}) => {
             direction="column"
             justifyContent="center"
             sx={{
-                minHeight: '100vh',
+                minHeight: '100vh',                
                 backgroundImage: `url(${wallpaperLogin})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundAttachment: 'fixed',
+                padding: 0,
             }}
         >
             <Grid

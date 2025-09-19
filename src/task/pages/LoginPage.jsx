@@ -98,7 +98,7 @@ export const LoginPage = () => {
             </Grid>
           </Grid>
           <Grid container direction='row' justifyContent='end' size={12}>
-            <Link component={RouterLink} color='#274215' to="/auth/registro" onClick={clearError}>
+            <Link component={RouterLink} color='#274215' to="/auth/registro" onClick={clearError} sx={{ fontFamily: '"Roboto","Helvetica","Arial",sans-serif' }}>
               Crear una cuenta
             </Link>
           </Grid>

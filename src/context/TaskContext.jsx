@@ -74,12 +74,7 @@ export const TaskProvider = ({children}) => {
     const deleteTask = async (task) => {
         try {
             const { data } = await taskApi.delete(`/tasks/${task.id}`);
-
-            if(data.task) {
-                dispatch({type: types.updateTask, payload: data.task})
-            } else {
-                dispatch({type: types.deleteTask, payload: task})
-            }
+            dispatch({type: types.deleteTask, payload: task})
             return {ok: true};
         } catch (error) {
             console.log('Error eliminando la tarea: ', error);

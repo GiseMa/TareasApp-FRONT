@@ -13,17 +13,18 @@ export const types = {
     errorAuth: '[AUTH] Error auth',
     clearErrorAuth: '[AUTH] Clear error',
     clearRegister: '[AUTH] Clear register',
+    finishChecking: '[AUTH] Finish checking',
 
-    loadTask: '[TASK] Load task',
+    loadTasks: '[TASK] Load task',
     saveTask : '[TASK] Save task',
     updateTask: '[TASK] Update task',
     deleteTask: '[TASK] Delete task',
     isLoadingTask: '[TASK] Loading task',
     errorTask : '[TASK] Error task',
-    resetTask : '[TASK] Reset task',
+    resetTasks : '[TASK] Reset task',
     loadFilters : '[TASK] Load filters',
     saveActualFilters : '[TASK] Save filters',
 
     openModal: '[UI] Open Modal',
-    closeModa: '[UI] Close Modal',
+    closeModal: '[UI] Close Modal',
 }

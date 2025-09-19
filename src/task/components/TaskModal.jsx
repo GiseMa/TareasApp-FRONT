@@ -143,6 +143,7 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                         onChange={onInputChange} 
                         error={!!titleValid && taskSubmitted}
                         helperText={taskSubmitted ? titleValid : ''}
+                        disabled={!!task && task.completed}
                     />
                 </Grid>
                 <Grid sx={{mt: 2, xs: 12, p: 1}}>
@@ -157,6 +158,7 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                         onChange={onInputChange}   
                         error={!!textValid && taskSubmitted}
                         helperText={taskSubmitted ? textValid : ''}
+                        disabled={!!task && task.completed}
                     />
                 </Grid>
                 <Grid  grid={{xs: 8}}  sx={{p: 2, mt: 2, xs: 12}} container>
@@ -169,6 +171,7 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                             label="Tipo de tarea"
                             name="type"
                             onChange={onInputChange}   
+                            disabled={!!task && task.completed}
                         >
                             <MenuItem value="Escoja un tipo" disabled>Escoja el tipo de tarea</MenuItem>   
                                 {
@@ -194,7 +197,8 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                             dateFormat="Pp"
                             showTimeSelect
                             locale="es"
-                            timeCaption="Hora"                                
+                            timeCaption="Hora" 
+                            disabled={!!task && task.completed}                               
                             customInput={<TextField 
                                             fullWidth 
                                             error={!isStartDateValid && taskSubmitted && !isEditMode} 
@@ -214,6 +218,7 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                             showTimeSelect
                             locale="es"
                             timeCaption="Hora"
+                            disabled={!!task && task.completed}
                             customInput={<TextField 
                                             fullWidth 
                                             error={!isEndDateValid && taskSubmitted} 

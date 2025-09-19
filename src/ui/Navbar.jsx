@@ -1,20 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import { useTask } from "../context/TaskContext";
 
 export const Navbar = ({drawerWidth}) => {
 
-    const {tasks} = useTask();
-    const navigate = useNavigate();
-    const {logout} = useAuth();
-
-  const onLogout = async () => {
-      await logout();
-      navigate('/auth/login', {
-          replace: true,
-      });
-  };
+  const {tasks} = useTask();
+  const {onLogout} = useAuth();
 
   return (
     <Box sx={{ flexGrow: 1 }}>

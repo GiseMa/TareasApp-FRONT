@@ -79,6 +79,16 @@ export const TasksPage = () => {
       return;
     };
 
+    const hasCompleted = checked.some(taskId => {
+      const task = tasks.find(t => t.id === taskId);
+      return task?.completed;
+    });
+
+    if(hasCompleted) {
+      setShowAlert({open: true, message: 'Debe seleccionar únicamente tareas pendientes'});
+      return;
+    };
+
     for(const taskId of checked) {
       const task = tasks.find(t => t.id === taskId);
       if(task) await completeTask(task, {completed: true});
@@ -188,7 +198,13 @@ export const TasksPage = () => {
                                   inputProps={{ 'aria-label': labelId }}
                                 />
                               }
+                              <Box sx={{display: 'flex', justifyContent:'space-between', alignItems:'center', flex: 1}}>
                                 <Typography fontWeight="bold">{t.title}</Typography>
+                                 <Typography sx={{ whiteSpace: 'pre-line', flexDirection: 'row-reverse', pr: 4}}>
+                                      <strong>Inicio: </strong>  {new Date(t.start).toLocaleString()}
+                                 </Typography>
+                              </Box>
+                            
                             </Box>
                           </AccordionSummary>
                           <AccordionDetails sx={{px: 3}}>
