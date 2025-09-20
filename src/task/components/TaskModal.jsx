@@ -170,8 +170,8 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                             value={type} 
                             label="Tipo de tarea"
                             name="type"
-                            onChange={onInputChange}   
-                            disabled={!!task && task.completed}
+                            onChange={onInputChange}  
+                            disabled={!!task && task.completed} 
                         >
                             <MenuItem value="Escoja un tipo" disabled>Escoja el tipo de tarea</MenuItem>   
                                 {
@@ -197,8 +197,8 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
                             dateFormat="Pp"
                             showTimeSelect
                             locale="es"
-                            timeCaption="Hora" 
-                            disabled={!!task && task.completed}                               
+                            timeCaption="Hora"    
+                            disabled={!!task && task.completed}                           
                             customInput={<TextField 
                                             fullWidth 
                                             error={!isStartDateValid && taskSubmitted && !isEditMode} 

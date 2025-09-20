@@ -86,7 +86,7 @@ export const TaskProvider = ({children}) => {
 
     const getFilters = async () => {
         try {
-            const {data} = await taskApi.get(`/filters`);
+            const {data} = await taskApi.get(`/tasks/filters`);
             dispatch({type: types.loadFilters, payload: data})
             return {ok: true};
         } catch (error) {
@@ -103,7 +103,6 @@ export const TaskProvider = ({children}) => {
     
     };
     
-
 
     return (
         <TaskContext.Provider value={{...taskState, getTasks, createTask, updateTask, deleteTask,  completeTask, getFilters, saveActualFilters}}>

@@ -123,7 +123,7 @@ export const RegisterPage = () => {
             </Grid>
           </Grid>
           <Grid container direction='row' justifyContent='end' size={12}>
-            <Typography sx={{mr: 1}} >¿Ya tienes cuenta?</Typography>
+            <Typography sx={{mr: 1}}>¿Ya tienes cuenta?</Typography>
             <Link component={RouterLink} color='#274215' to="/auth/login" onClick={clearError} sx={{ fontFamily: '"Roboto","Helvetica","Arial",sans-serif', size:''}}>
               ¡Logueate!
             </Link>

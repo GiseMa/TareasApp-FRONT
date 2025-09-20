@@ -60,3 +60,4 @@ export const SideBar = ({drawerWidth = 240, onDeleteSelected, onCompleteSelected
      </Box>
   )
 }
+

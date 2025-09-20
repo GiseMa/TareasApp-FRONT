@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import { useAuth } from "../context/AuthContext";
 import { useTask } from "../context/TaskContext";
+import { useAuth } from "../context/AuthContext";
 
 export const Navbar = ({drawerWidth}) => {
 

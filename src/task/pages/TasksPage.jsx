@@ -97,6 +97,7 @@ export const TasksPage = () => {
     setChecked([]);
   };
 
+
   const handleUpdateTask = async () => {
 
     if(checked.length === 0 || checked.length > 1) {
@@ -203,9 +204,7 @@ export const TasksPage = () => {
                                  <Typography sx={{ whiteSpace: 'pre-line', flexDirection: 'row-reverse', pr: 4}}>
                                       <strong>Inicio: </strong>  {new Date(t.start).toLocaleString()}
                                  </Typography>
-                              </Box>
-                            
-                            </Box>
+                              </Box>                            </Box>
                           </AccordionSummary>
                           <AccordionDetails sx={{px: 3}}>
                               <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1, width: '100%' }}>
@@ -264,7 +263,7 @@ export const TasksPage = () => {
             >
               <DialogTitle id="alert-dialog-title">{`¿Estás seguro de eliminar ${taskToDelete.length} tareas?`}</DialogTitle> 
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">Las tareas completadas se podran seguir consultando</DialogContentText>
+                <DialogContentText id="alert-dialog-description">Las tareas no podran seguir siendo consultadas</DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleCancelSave} color="primary">Cancelar</Button>
