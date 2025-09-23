@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import taskApi from "../api/taskApi";
 import { authReducer } from "./authReducer";
 import { taskReducer } from "./taskReducer";
-
 import { types } from "./types";
 import { useNavigate } from 'react-router-dom';
 

@@ -56,21 +56,7 @@ export const TaskProvider = ({children}) => {
             return {ok: false, errorMsg: msg};
         };
     };
-
-    const completeTask = async (task) => {
-        try {
-            const {data} = await taskApi.patch(`/tasks/${task.id}`);
-            dispatch({type: types.updateTask, payload: data.task})
-            return {ok: true};
-        } catch (error) {
-            console.log('Error actualizando la tarea: ', error);
-            const msg = error.response?.data?.msg
-            dispatch({type: types.errorTask, payload: msg});
-            return {ok: false, errorMsg: msg};
-        };
-    };
  
-
     const deleteTask = async (task) => {
         try {
             const { data } = await taskApi.delete(`/tasks/${task.id}`);
@@ -102,10 +88,9 @@ export const TaskProvider = ({children}) => {
         return {ok: true};
     
     };
-    
 
     return (
-        <TaskContext.Provider value={{...taskState, getTasks, createTask, updateTask, deleteTask,  completeTask, getFilters, saveActualFilters}}>
+        <TaskContext.Provider value={{...taskState, getTasks, createTask, updateTask, deleteTask, getFilters, saveActualFilters}}>
             {children}
         </TaskContext.Provider>
     );

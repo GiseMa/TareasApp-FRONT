@@ -7,7 +7,7 @@ import { TaskLayout } from "../layout/TaskLayout";
 
 export const TasksPage = () => {
 
-  const {getTasks, tasks, isLoading, deleteTask, completeTask, applyFilters} = useTask();
+  const {getTasks, tasks, isLoading, deleteTask, applyFilters, updateTask} = useTask();
   const {openModal} = useUI();
 
   const [editTask, setEditTask] = useState(null);
@@ -91,7 +91,7 @@ export const TasksPage = () => {
 
     for(const taskId of checked) {
       const task = tasks.find(t => t.id === taskId);
-      if(task) await completeTask(task, {completed: true});
+      if(task) await updateTask(task, {completed: true});
     };
     
     setChecked([]);
