@@ -94,8 +94,9 @@ export const TaskModal = ({task, isEditMode, setIsEditMode, setEditTask}) => {
         setDateError(false);
         const difference = differenceInSeconds(formState.end, formState.start);
 
+        setTaskSubmitted(true);
+
         if(!isEditMode) {
-            setTaskSubmitted(true);
             if( (isNaN(difference) || difference <= 0 || !isStartDateValid)) {
                 setDateError(true);
                 return;

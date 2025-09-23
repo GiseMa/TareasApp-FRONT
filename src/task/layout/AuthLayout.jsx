@@ -1,9 +1,11 @@
-import { Grid, Typography } from "@mui/material";
+import { CssBaseline, Grid, Typography } from "@mui/material";
 import wallpaperLogin from '../../assets/wallpaperLogin8.png'
 
 export const AuthLayout = ({children, title = ''}) => {
 
     return (
+        <>
+        <CssBaseline/>
         <Grid 
             alignItems="center"
             container
@@ -30,5 +32,6 @@ export const AuthLayout = ({children, title = ''}) => {
                 {children}
             </Grid>
         </Grid>
+        </>
     );
 };

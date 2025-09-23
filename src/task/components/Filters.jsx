@@ -3,15 +3,13 @@ import { useEffect, useState } from 'react';
 import { useTask } from '../../context/TaskContext';
 
 export const Filters = () => {
-
-  const {filters, getFilters, saveActualFilters} = useTask();
-
-  const [selectedFilters, setSelectedFilters] = useState({types: [], state: '', order: ''});
+  const { filters, getFilters, saveActualFilters } = useTask();
+  const [selectedFilters, setSelectedFilters] = useState({ types: [], state: '', order: '' });
 
   useEffect(() => {
     getFilters();
-  }, [])
-      
+  }, []);
+
   const handleChange = (event, filter) => {
     const { value } = event.target;
 
@@ -32,90 +30,54 @@ export const Filters = () => {
       return { ...prev, [filter]: ''}
     })
   };
-  
+
   useEffect(() => {
     saveActualFilters(selectedFilters);
   }, [selectedFilters]);
   
+  const selectConfig = [
+    { id: 'types', label: 'Tipo de Tarea', multiple: true },
+    { id: 'state', label: 'Estado', multiple: false },
+    { id: 'order', label: 'Fecha de inicio', multiple: false },
+  ];
+
   return (
     <Box>
-        <FormControl sx={{ m: 3, width: 200}} >
-          <InputLabel id="task-type-label">Tipo de Tarea</InputLabel>
+      {selectConfig.map(({ id, label, multiple }) => (
+        <FormControl key={id} sx={{ m: 3, width: 200 }}>
+          <InputLabel id={`${id}-label`}>{label}</InputLabel>
           <Select
-            labelId="task-type-label"
-            id="task-type-select"
-            label="Tipo de tarea"
-            value={selectedFilters.types}
-            multiple
-            onChange={(e) => handleChange(e, 'types')}
-            renderValue={() => ''}  
-            input={<OutlinedInput label="Tipo de tarea"/>}
+            labelId={`${id}-label`}
+            id={`${id}-select`}
+            label={label}
+            multiple={multiple}
+            value={selectedFilters[id]}
+            onChange={(e) => handleChange(e, id)}
+            renderValue={() => ''} 
+            input={<OutlinedInput label={label} />}
           >
-            {
-              (filters?.types || []).map((t) => (
-                <MenuItem key={t.name} value={t.name}>{t.name}</MenuItem>
-              ))
-            }
+            {(filters?.[id] || []).map((opt) => (
+              <MenuItem key={opt.name} value={opt.name}>{opt.name}</MenuItem>
+            ))}
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 3, width: 200 }}>
-          <InputLabel id="task-state">Estado</InputLabel>
-          <Select
-            labelId="task-state"
-            id="task-state-select"
-            label="Estado"
-            value={selectedFilters.state}
-            onChange={(e) => handleChange(e, 'state')}
-            renderValue={() => ''}  
-            input={<OutlinedInput label="Estado de tarea" />}
-          >
-            {
-              (filters?.state || []).map((s) => (
-                <MenuItem key={s.name} value={s.name}>{s.name}</MenuItem>
-              ))
-            }
-          </Select>
-        </FormControl>
-        <FormControl sx={{ m: 3, width: 200 }}>
-          <InputLabel id="task-order">Fecha de inicio</InputLabel>
-          <Select
-            labelId="task-order"
-            id="task-order-select"
-            label="Fecha"
-            value={selectedFilters.order}
-            onChange={(e) => handleChange(e, 'order')}
-            renderValue={() => ''}  
-            input={<OutlinedInput label="Ordenamiento" />}
-          >
-            {
-              (filters?.order || []).map((d) => (
-                <MenuItem key={d.name} value={d.name}>{d.name}</MenuItem>
-              ))
-            }
-          </Select>
-        </FormControl>
-        <Stack direction="row" spacing={1} flexWrap="wrap">
-          {
-            selectedFilters.types.map((type) => (
-              <Chip key={type} label={type} variant="outlined" onDelete={() => handleDelete(type, 'types')} />
-            ))
-          }
-          {
-            selectedFilters.state && (
-               <Chip key={selectedFilters.state} label={selectedFilters.state} variant='outlined' onDelete={() => handleDelete(selectedFilters.state, 'state')}/>
-            )
-          }
-          {
-            selectedFilters.order && (
-              <Chip 
-                  key={selectedFilters.order} 
-                  label={selectedFilters.order} 
-                  variant="outlined" 
-                  onDelete={() => handleDelete(selectedFilters.order, 'order')} 
-              />
-            )
-          }
-        </Stack>
+      ))}
+
+      <Stack direction="row" spacing={1} flexWrap="wrap">
+        {selectedFilters.types.map(type => (
+          <Chip key={type} label={type} variant="outlined" onDelete={() => handleDelete(type, 'types')} />
+        ))}
+
+        {selectedFilters.state && (
+          <Chip label={selectedFilters.state} variant="outlined"
+                onDelete={() => handleDelete(selectedFilters.state, 'state')} />
+        )}
+
+        {selectedFilters.order && (
+          <Chip label={selectedFilters.order} variant="outlined"
+                onDelete={() => handleDelete(selectedFilters.order, 'order')} />
+        )}
+      </Stack>
     </Box>
   );
 };

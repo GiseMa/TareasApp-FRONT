@@ -1,4 +1,4 @@
-import { Box, Toolbar } from "@mui/material";
+import { Box, CssBaseline, Toolbar } from "@mui/material";
 import { Navbar } from "../../ui/Navbar";
 import { SideBar } from "../components/SideBar";
 
@@ -7,6 +7,7 @@ const drawerWidth = 280;
 export const TaskLayout = ({children, taskActions = {}}) => {
   return (
     <>
+    <CssBaseline/>
     <Navbar drawerWidth={drawerWidth}/>
     <Box sx={{display: 'flex', minHeight: '100vh',  backgroundColor: '#CAD8D8'}}> 
         <SideBar drawerWidth={drawerWidth} {...taskActions}/>

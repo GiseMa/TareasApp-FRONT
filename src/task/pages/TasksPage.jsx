@@ -124,14 +124,13 @@ export const TasksPage = () => {
     const getState = applyFilters.state === '' ||
                      (applyFilters.state === 'Completadas' && task.completed) ||
                      (applyFilters.state === 'Pendientes' && !task.completed) ||
-                     (applyFilters.state === 'Eliminadas' && task.eliminated) ||
                      (applyFilters.state === 'Todas');
     
     return getType && getState;
   }) : tasks;
 
   let visibleTasks = tasksWithFilters.filter((t) => {
-    if(applyFilters.state !== 'Eliminadas' && applyFilters.state !== 'Todas') {
+    if(applyFilters.state !== 'Todas') {
       return !t.eliminated;
     }
     return true;
@@ -179,7 +178,7 @@ export const TasksPage = () => {
                       <Grid grid={{xs: 12, sm: 6}}  key={t.id}>
                         <Accordion 
                           key={t.id}
-                          sx={{ width: '100%', mb: 2, backgroundColor:  t.eliminated ? '#D98958' : t.completed ? '#9FCC6D' :'#F1B634'}}>
+                          sx={{ width: '100%', mb: 2, backgroundColor: t.completed ? '#9FCC6D' :'#F1B634'}}>
                           <AccordionSummary
                               expandIcon={<ExpandMoreIcon/>} 
                               aria-controls="panel1bh-content"
